@@ -1,0 +1,9 @@
+[project]
+name = "supra-practice"
+version = "0.1.0"
+description = "A disposable project with one failing test, for trying Agent Supra"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
