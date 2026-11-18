@@ -1,10 +1,21 @@
 # Agent Supra plugin
 
-The Claude Code plugin for [Agent Supra](https://agentsupra.in), which notices when an AI
-coding agent is stuck by checking whether its tests actually make progress.
+The Claude Code plugin for [Agent Supra](https://agentsupra.in), supervision for AI coding agents.
+With it, Claude Code sessions:
+
+- **pause when stuck**: the same tests failing attempt after attempt, edits flipping back and forth,
+  or a tool failing the same way. Supra shows the evidence and a suggested fix; you continue, fix or stop.
+- **can't run risky commands**: force pushes, recursive deletes, production databases, `curl | sh`
+  and secrets files are blocked before they run. Your own rules in a `supra.yaml` can hold a
+  command (a deploy, say) until someone approves it, once.
+- **get nudged** with what they are stuck on, instead of being paused, if you prefer.
+- **show estimated spend** per session, person and repository, and appear in your team's fleet view.
+
+Guards run on your machine and report only the guard's name. Prompts, code and command text
+never leave it.
 
 ```sh
-pip install --upgrade "agent-supra>=1.8.0"
+pip install --upgrade "agent-supra>=1.15.0"
 claude plugin marketplace add voidpusher/agent-supra-plugin
 claude plugin install agent-supra@agent-supra
 agent-supra login

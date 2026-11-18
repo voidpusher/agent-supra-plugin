@@ -1,6 +1,16 @@
 {
   "name": "agent-supra",
-  "metadata": {"description": "Agent Supra's Claude Code supervision plugin."},
-  "owner": {"name": "Sanchit Pandey"},
-  "plugins": [{"name": "agent-supra", "source": "./plugins/claude-code", "description": "Evidence-backed tool supervision and pytest progress for Claude Code."}]
+  "metadata": {
+    "description": "Agent Supra: supervision for Claude Code."
+  },
+  "owner": {
+    "name": "Sanchit Pandey"
+  },
+  "plugins": [
+    {
+      "name": "agent-supra",
+      "source": "./plugins/claude-code",
+      "description": "Supervise Claude Code: pause a session that is stuck on the same failing tests, block risky commands or hold them for your approval, nudge Claude when it loops, and track estimated spend."
+    }
+  ]
 }

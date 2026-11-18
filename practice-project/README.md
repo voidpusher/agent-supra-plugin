@@ -18,7 +18,7 @@ cp -r agent-supra-plugin/practice-project ~/supra-practice
 cd ~/supra-practice
 git init -q && git add . && git -c user.name=Practice -c user.email=practice@example.com commit -qm "Practice project"
 python -m venv .venv && source .venv/bin/activate
-python -m pip install pytest "agent-supra>=1.8.0"
+python -m pip install pytest "agent-supra>=1.15.0"
 python -m pytest -q        # expect: 1 failed, 4 passed
 ```
 
@@ -30,7 +30,7 @@ Copy-Item -Recurse agent-supra-plugin\practice-project $HOME\supra-practice
 cd $HOME\supra-practice
 git init -q; git add .; git -c user.name=Practice -c user.email=practice@example.com commit -qm "Practice project"
 python -m venv .venv; .\.venv\Scripts\Activate.ps1
-python -m pip install pytest "agent-supra>=1.8.0"
+python -m pip install pytest "agent-supra>=1.15.0"
 python -m pytest -q        # expect: 1 failed, 4 passed
 ```
 
