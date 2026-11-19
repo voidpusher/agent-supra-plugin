@@ -1,12 +1,96 @@
 {
+  "description": "Agent Supra supervision. Each hook runs the agent-supra command when it is installed; without it, the session start says how to install it and the other hooks do nothing.",
   "hooks": {
-    "SessionStart": [{"hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}],
-    "PreToolUse": [{"matcher": "*", "hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}],
-    "PostToolUse": [{"matcher": "Edit|Write|Bash|PowerShell", "hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}],
-    "PostToolUseFailure": [{"matcher": "Edit|Write|Bash|PowerShell", "hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}],
-    "SubagentStart": [{"hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}],
-    "SubagentStop": [{"hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}],
-    "Stop": [{"hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}],
-    "SessionEnd": [{"hooks": [{"type": "command", "command": "agent-supra claude-hook", "timeout": 30}]}]
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; else printf '%s\\n' '{\"systemMessage\":\"Agent Supra: the agent-supra command is not installed on this computer, so this session is not supervised. Install it with: curl -fsSL https://agentsupra.in/install.sh | sh   (Windows PowerShell: irm https://agentsupra.in/install.ps1 | iex), then start a new session.\",\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"The Agent Supra plugin is enabled but the agent-supra command is not installed, so this session is not supervised. If the user asks about Agent Supra, tell them to run the installer from https://agentsupra.in/docs/quickstart and start a new session.\"}}'; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Edit|Write|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
   }
 }
