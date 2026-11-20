@@ -1,12 +1,12 @@
 {
-  "description": "Agent Supra supervision. Each hook runs the agent-supra command when it is installed; without it, the session start says how to install it and the other hooks do nothing.",
+  "description": "Agent Supra supervision. Each hook runs hooks/run.sh, which hands the event to the agent-supra command when it is installed; without it, the session start says how to install it and the other hooks do nothing.",
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; else printf '%s\\n' '{\"systemMessage\":\"Agent Supra: the agent-supra command is not installed on this computer, so this session is not supervised. Install it with: curl -fsSL https://agentsupra.in/install.sh | sh   (Windows PowerShell: irm https://agentsupra.in/install.ps1 | iex), then start a new session.\",\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"The Agent Supra plugin is enabled but the agent-supra command is not installed, so this session is not supervised. If the user asks about Agent Supra, tell them to run the installer from https://agentsupra.in/docs/quickstart and start a new session.\"}}'; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" session-start",
             "timeout": 30
           }
         ]
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" pre-tool-use",
             "timeout": 30
           }
         ]
@@ -30,7 +30,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" post-tool-use",
             "timeout": 30
           }
         ]
@@ -42,7 +42,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" post-tool-use-failure",
             "timeout": 30
           }
         ]
@@ -53,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" subagent-start",
             "timeout": 30
           }
         ]
@@ -64,7 +64,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" subagent-stop",
             "timeout": 30
           }
         ]
@@ -75,7 +75,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" stop",
             "timeout": 30
           }
         ]
@@ -86,7 +86,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if command -v agent-supra >/dev/null 2>&1; then agent-supra claude-hook; fi",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run.sh\" session-end",
             "timeout": 30
           }
         ]
