@@ -1,6 +1,6 @@
 {
   "name": "agent-supra",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Supervise Claude Code: pause a session that is stuck on the same failing tests, block risky commands or hold them for your approval, nudge Claude when it loops, and track estimated spend.",
   "author": {
     "name": "Sanchit Pandey"

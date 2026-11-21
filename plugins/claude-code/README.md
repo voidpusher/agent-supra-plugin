@@ -6,7 +6,7 @@ Supervision for Claude Code sessions. With this plugin, [Agent Supra](https://ag
   between two versions, or a tool failing the same way, and shows you the evidence and a suggested
   fix so you can continue, fix or stop it;
 - **blocks risky commands before they run**: force pushes, recursive deletes, production database
-  commands, `curl | sh` and edits to secrets files, or holds a command (a deploy, say) until a person
+  commands, piping a downloaded script into a shell, and edits to secrets files, or holds a command (a deploy, say) until a person
   approves it once;
 - **nudges Claude** with what it is stuck on, instead of pausing, if you prefer;
 - **tracks estimated model spend** per session, person and repository.
@@ -14,16 +14,12 @@ Supervision for Claude Code sessions. With this plugin, [Agent Supra](https://ag
 ## What it needs
 
 The plugin is a thin connector. Every hook runs `hooks/run.sh`, which passes the hook's input to the
-`agent-supra` command and returns its answer unchanged. Install that command separately, once:
-
-```sh
-curl -fsSL https://agentsupra.in/install.sh | sh        # macOS and Linux
-irm https://agentsupra.in/install.ps1 | iex              # Windows PowerShell
-```
+`agent-supra` command and returns its answer unchanged. Install that command separately, once, by
+following the [quickstart](https://agentsupra.in/docs/quickstart) (macOS, Linux and Windows).
 
 The installer also adds this plugin, so most people never install it by hand. `agent-supra` is
 published on PyPI under the MIT license as [`agent-supra`](https://pypi.org/project/agent-supra/). Without it, the
-plugin does nothing except show the install command when a session starts. The plugin itself never
+plugin does nothing except say where to install it when a session starts. The plugin itself never
 downloads or installs anything.
 
 ## What runs, what is sent, and where
